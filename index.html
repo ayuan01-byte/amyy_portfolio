@@ -460,7 +460,16 @@
       color: #777;
       font-weight: 300;
       margin-top: 14px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      min-width: 0;
+    }
+
+    .modal-meta span {
+      min-width: 0;
+    }
+
+    .modal-meta #projMaterials {
+      flex: 1;
     }
 
     .modal-meta-dot {
@@ -649,14 +658,12 @@
     <ul>
       <li><a href="#work" class="nav-link">Work</a></li>
     </ul>
-    <a href="mailto:hello@amyyuan.design" class="cta">Get in touch</a>
   </nav>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="hero::before"></div>
     <div class="hero::after"></div>
-    <div class="hero-label">[ 3D scene / video — drop in ]</div>
     <div class="hero-overlay"></div>
     
     <div class="hero-content">
@@ -755,30 +762,57 @@
       </div>
 
       <!-- Placeholder Cards -->
-      <div class="placeholder-card">
-        <span class="label">image</span>
-        <span class="text">project 04</span>
+      <div class="project-card" onclick="openProject(3)">
+        <img src="Project 4/1.jpeg" alt="Site-Specific Installation">
+        <div class="project-overlay"></div>
+        <div class="project-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <circle cx="9" cy="9" r="2"></circle>
+            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+          </svg>
+          4 photos
+        </div>
+        <div class="project-info">
+          <div class="project-info-text">
+            <p class="project-number">04</p>
+            <p class="project-title">Site-Specific Installation</p>
+          </div>
+          <div class="project-arrow">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </div>
+        </div>
       </div>
 
-      <div class="placeholder-card">
-        <span class="label">image</span>
-        <span class="text">project 04</span>
+      <div class="project-card" onclick="openProject(4)">
+        <img src="Other Works/IMG_7082.png" alt="Other Works">
+        <div class="project-overlay"></div>
+        <div class="project-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <circle cx="9" cy="9" r="2"></circle>
+            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+          </svg>
+          5 photos
+        </div>
+        <div class="project-info">
+          <div class="project-info-text">
+            <p class="project-number">05</p>
+            <p class="project-title">Other Works</p>
+          </div>
+          <div class="project-arrow">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </div>
+        </div>
       </div>
 
-      <div class="placeholder-card">
-        <span class="label">image</span>
-        <span class="text">project 05</span>
-      </div>
 
-      <div class="placeholder-card wide">
-        <span class="label">image / video</span>
-        <span class="text">project 06 — wide</span>
-      </div>
-
-      <div class="placeholder-card">
-        <span class="label">image</span>
-        <span class="text">project 07</span>
-      </div>
     </div>
   </section>
 
@@ -796,9 +830,9 @@
         <p class="modal-number" id="projNum"></p>
         <h2 class="modal-title" id="projTitle"></h2>
         <div class="modal-meta">
-          <span id="projDate"></span>
+          <span class="modal-date" id="projDate"></span>
           <div class="modal-meta-dot"></div>
-          <span id="projMaterials"></span>
+          <span class="modal-materials" id="projMaterials"></span>
         </div>
         <p class="modal-credit">First-year work, RISD</p>
       </div>
@@ -851,7 +885,7 @@
       {
         num: "02 · Installation",
         title: "Web Performance Videos",
-        date: "May 2026",
+        date: "March 2026",
         materials: "Adobe Premiere, Visual Studio Code, LCD screens, solar panel, smart devices",
         desc: "The videos explore the idea that the rapid development of technology relies on resources, and that access to secure and stable internet is a privilege available only to those in developed countries. After researching how sand affects solar energy, I translated that into a physical mechanism: when sand covered the solar panel, it reduced light, lowered power, and weakened the internet connection for the LCD screen projecting Congo. In contrast, the Times Square screen remained fast and seamless, with visual inspiration drawn from Marco Brambilla’s spectacle-driven imagery.",
         links: [
@@ -866,7 +900,7 @@
         num: "03 · Website",
         title: "Web as Surveillance",
         date: "January 2026",
-        materials: "HTML, CSS, JavaScript, Silkscreen, Instagram, Cyanotype",
+        materials: "HTML, CSS, JavaScript, Silkscreen, Cyanotype",
         desc: "This interactive website explores how digital platforms promise user agency while systematically erasing it. The project emerged from a winter session investigation into online identity and authorship: I created a fake persona on Instagram and produced a series of silkscreen cathedral works exploring surveillance, faith, and digital control—themes that parallel Mouchette.org and Chia Amisola's interrogation of how users are watched, shaped, and made productive.",
         links: [
           { label: "Website", href: "https://ayuan01-byte.github.io/cathedral_amyyuan_project3/" },
@@ -876,6 +910,35 @@
           { src: "Project 3/2_.png", type: "image" },
           { src: "Project 3/3.png", type: "image" },
           { src: "Project 3/4.png", type: "image" },
+        ],
+      },
+      {
+        num: "04 · Installation",
+        title: "Site-Specific Installation",
+        date: "February 2026",
+        materials: "Wood reed, wire, wood sticks, found materials",
+        desc: "This installation explores what it means to be present within a contemporary workspace shaped by the constant coexistence of physical and digital life. Inspired by Sarah Sze’s use of accumulation, structure, and everyday materials, the work began with found objects from the workroom—tools, pens, and stationery—as a way of thinking through how ideas first emerge from ordinary habits of making. From there, these objects shifted into grid-like arrangements that suggested planning, ordering, and systems of thought before moving into a more experimental language of swirling wood reed and wire. Suspended in space, it invites viewers to slow down and notice the smells of oil paint, the textures of brushes, and the physical presence of the workroom itself, turning overlooked objects into a reflection on fragmentation, attention, and how artists find form today.",
+        links: [],
+        media: [
+          { src: "Project 4/1.jpeg", type: "image" },
+          { src: "Project 4/2.jpeg", type: "image" },
+          { src: "Project 4/3.jpeg", type: "image" },
+          { src: "Project 4/4.jpeg", type: "image" },
+        ],
+      },
+      {
+        num: "05 · Selected Works",
+        title: "Other Works",
+        date: "Feb–Apr 2026",
+        materials: "",
+        desc: "",
+        links: [],
+        media: [
+          { src: "Other Works/IMG_7082.png", type: "image" },
+          { src: "Other Works/IMG_7099.png", type: "image" },
+          { src: "Other Works/modelwinter2025.jpeg", type: "image" },
+          { src: "Other Works/Puzzle Project (1) Amy (1).jpeg", type: "image" },
+          { src: "Other Works/Puzzle Project (3) Amy (1).jpeg", type: "image" },
         ],
       },
     ];
