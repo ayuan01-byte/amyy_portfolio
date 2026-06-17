@@ -401,6 +401,197 @@
       color: rgba(245, 245, 245, 0.3);
     }
 
+    /* Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.97);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .modal-sidebar {
+      width: 420px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      padding: 96px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      margin-bottom: 14px;
+    }
+
+    .modal-number {
+      margin: 0 0 10px;
+      font-family: 'SF Mono', ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: #08e808;
+      text-transform: uppercase;
+    }
+
+    .modal-title {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 600;
+      color: #f5f5f5;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .modal-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: #777;
+      font-weight: 300;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .modal-meta-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 999px;
+      background: #555;
+    }
+
+    .modal-credit {
+      font-size: 12px;
+      color: #777;
+      font-weight: 300;
+      margin: 6px 0 0;
+    }
+
+    .modal-description {
+      margin: 0;
+      font-size: 13.5px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: #aaaaaa;
+      max-height: 42vh;
+      overflow-y: auto;
+    }
+
+    .modal-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .modal-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      color: #f5f5f5;
+      font-size: 13px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .modal-link:hover {
+      border-color: #08e808;
+      color: #08e808;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 26px;
+      right: 36px;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.06);
+      color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 3;
+    }
+
+    .modal-close:hover {
+      border-color: #08e808;
+      color: #08e808;
+    }
+
+    .modal-content {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 56px 104px;
+      box-sizing: border-box;
+    }
+
+    .modal-media {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-controls {
+      position: absolute;
+      bottom: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      z-index: 2;
+    }
+
+    .modal-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.06);
+      color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .modal-btn:hover {
+      border-color: #08e808;
+      color: #08e808;
+    }
+
+    .modal-counter {
+      min-width: 74px;
+      text-align: center;
+      font-family: 'SF Mono', ui-monospace, monospace;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      color: rgba(245, 245, 245, 0.75);
+    }
+
     /* Footer */
     footer {
       padding: 96px 56px;
@@ -441,6 +632,11 @@
 
       .works {
         padding: 120px 24px 48px;
+      }
+
+      .modal-sidebar {
+        width: 300px;
+        padding: 64px 32px;
       }
     }
   </style>
@@ -487,7 +683,7 @@
 
     <div class="projects-grid">
       <!-- Project 01 -->
-      <div class="project-card featured" onclick="window.location.href='works.html?project=0'" style="cursor: pointer;">
+      <div class="project-card featured" onclick="openProject(0)">
         <img src="Project 1/IMG_0551 2.jpeg" alt="The Body as Image">
         <div class="project-overlay"></div>
         <div class="project-badge">
@@ -513,7 +709,7 @@
       </div>
 
       <!-- Project 02 -->
-      <div class="project-card tall" onclick="window.location.href='works.html?project=1'" style="cursor: pointer;">
+      <div class="project-card tall" onclick="openProject(1)">
         <img src="Project 2/IMG_9570 2.JPG" alt="Web Performance Videos">
         <div class="project-overlay"></div>
         <div class="project-badge">
@@ -522,7 +718,7 @@
             <circle cx="9" cy="9" r="2"></circle>
             <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
           </svg>
-          3 photos
+          2 photos
         </div>
         <div class="project-info">
           <div class="project-info-text">
@@ -532,10 +728,36 @@
         </div>
       </div>
 
+      <!-- Project 03 -->
+      <div class="project-card" onclick="openProject(2)">
+          <img src="Project 3/1.png" alt="Website">
+        <div class="project-overlay"></div>
+        <div class="project-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <circle cx="9" cy="9" r="2"></circle>
+            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+          </svg>
+          4 photos
+        </div>
+        <div class="project-info">
+          <div class="project-info-text">
+            <p class="project-number">03</p>
+            <p class="project-title">Website</p>
+          </div>
+          <div class="project-arrow">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
       <!-- Placeholder Cards -->
       <div class="placeholder-card">
-        <span class="label">video</span>
-        <span class="text">project 03</span>
+        <span class="label">image</span>
+        <span class="text">project 04</span>
       </div>
 
       <div class="placeholder-card">
@@ -560,12 +782,107 @@
     </div>
   </section>
 
+  <!-- Modal Overlay -->
+  <div id="modalOverlay" class="modal-overlay">
+    <button class="modal-close" onclick="closeProject()" aria-label="Close project">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+
+    <aside class="modal-sidebar">
+      <div class="modal-header">
+        <p class="modal-number" id="projNum"></p>
+        <h2 class="modal-title" id="projTitle"></h2>
+        <div class="modal-meta">
+          <span id="projDate"></span>
+          <div class="modal-meta-dot"></div>
+          <span id="projMaterials"></span>
+        </div>
+        <p class="modal-credit">First-year work, RISD</p>
+      </div>
+      <p class="modal-description" id="projDesc"></p>
+      <div class="modal-links" id="projLinks"></div>
+    </aside>
+
+    <div class="modal-content">
+      <img id="modalMedia" class="modal-media" src="" alt="">
+      <div class="modal-controls">
+        <button class="modal-btn" onclick="prevImage()" aria-label="Previous image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+        <span class="modal-counter" id="modalCounter"></span>
+        <button class="modal-btn" onclick="nextImage()" aria-label="Next image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <p>© 2026 Amy Yuan. All rights reserved.</p>
   </footer>
 
   <script>
+    const projects = [
+      {
+        num: "01 · Installation",
+        title: "The Body as Image",
+        date: "May 2026",
+        materials: "Foamcore, projection mapping",
+        desc: "This installation explores how digital systems govern the body through observation, classification, and control. The scaffolding represents invisible structures of governance and larger systemic frameworks, reflecting ideas connected to Web 3.0 and the ways interfaces turn bodies, gestures, and behavior into usable data. Constructed from foamcore, the installation features a projection-mapped demo video of me navigating the website, linking the physical structure to the digital interface. In the face-based website, cosmetics symbolize beauty, self-presentation, and the pressure to maintain an image. In the hand-based website, shampoo refers to grooming and self-management, while perfume suggests luxury, allure, and the body as spectacle. Together, the work creates an uneasy environment in which the interface feels less like a tool for the user and more like a system that tracks, categorizes, and uses them.",
+        links: [
+          { label: "Website 1 — face", href: "https://ayuan01-byte.github.io/facespatials/" },
+          { label: "Website 2 — hand", href: "https://ayuan01-byte.github.io/hand/" },
+          { label: "Projection Mapping Demo", href: "https://drive.google.com/drive/folders/1QHUsRBKWLEYHFj7U7ZuiZOZ5RVKPa8t6?usp=drive_link" },
+        ],
+        media: [
+          { src: "Project 1/IMG_0551 2.jpeg", type: "image" },
+          { src: "Project 1/IMG_0555 2.jpeg", type: "image" },
+          { src: "Project 1/IMG_0556 2.jpeg", type: "image" },
+        ],
+      },
+      {
+        num: "02 · Installation",
+        title: "Web Performance Videos",
+        date: "May 2026",
+        materials: "Adobe Premiere, Visual Studio Code, LCD screens, solar panel, smart devices",
+        desc: "The videos explore the idea that the rapid development of technology relies on resources, and that access to secure and stable internet is a privilege available only to those in developed countries. After researching how sand affects solar energy, I translated that into a physical mechanism: when sand covered the solar panel, it reduced light, lowered power, and weakened the internet connection for the LCD screen projecting Congo. In contrast, the Times Square screen remained fast and seamless, with visual inspiration drawn from Marco Brambilla’s spectacle-driven imagery.",
+        links: [
+          { label: "Videos on lcd screens", href: "https://drive.google.com/drive/folders/1wi1YR4wvb5o3AqYqlPewGFB47Aw1-GIF?usp=sharing" },
+        ],
+        media: [
+          { src: "Project 2/IMG_9570 2.JPG", type: "image" },
+          { src: "Project 2/IMG_9575 2.jpg", type: "image" },
+        ],
+      },
+      {
+        num: "03 · Website",
+        title: "Web as Surveillance",
+        date: "January 2026",
+        materials: "HTML, CSS, JavaScript, Silkscreen, Instagram, Cyanotype",
+        desc: "This interactive website explores how digital platforms promise user agency while systematically erasing it. The project emerged from a winter session investigation into online identity and authorship: I created a fake persona on Instagram and produced a series of silkscreen cathedral works exploring surveillance, faith, and digital control—themes that parallel Mouchette.org and Chia Amisola's interrogation of how users are watched, shaped, and made productive.",
+        links: [
+          { label: "Website", href: "https://ayuan01-byte.github.io/cathedral_amyyuan_project3/" },
+        ],
+        media: [
+          { src: "Project 3/1.png", type: "image" },
+          { src: "Project 3/2_.png", type: "image" },
+          { src: "Project 3/3.png", type: "image" },
+          { src: "Project 3/4.png", type: "image" },
+        ],
+      },
+    ];
+
+    let currentProj = 0;
+    let currentIdx = 0;
+
     // Navbar scroll effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -576,6 +893,67 @@
       }
     });
 
+    function openProject(projIdx) {
+      currentProj = projIdx;
+      currentIdx = 0;
+      const proj = projects[projIdx];
+
+      document.getElementById('projNum').textContent = proj.num;
+      document.getElementById('projTitle').textContent = proj.title;
+      document.getElementById('projDate').textContent = proj.date;
+      document.getElementById('projMaterials').textContent = proj.materials;
+      document.getElementById('projDesc').textContent = proj.desc;
+
+      const linksContainer = document.getElementById('projLinks');
+      linksContainer.innerHTML = '';
+      proj.links.forEach((link) => {
+        const a = document.createElement('a');
+        a.className = 'modal-link';
+        a.href = link.href;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.innerHTML = `
+          <span>${link.label}</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17 17 7"></path>
+            <path d="M7 7h10v10"></path>
+          </svg>
+        `;
+        linksContainer.appendChild(a);
+      });
+
+      updateMedia();
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProject() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function updateMedia() {
+      const proj = projects[currentProj];
+      const media = proj.media[currentIdx];
+      document.getElementById('modalMedia').src = media.src;
+      document.getElementById('modalMedia').alt = `${proj.title} media ${currentIdx + 1}`;
+      const total = proj.media.length;
+      const pad = (n) => String(n).padStart(2, '0');
+      document.getElementById('modalCounter').textContent = `${pad(currentIdx + 1)} / ${pad(total)}`;
+    }
+
+    function nextImage() {
+      const proj = projects[currentProj];
+      currentIdx = (currentIdx + 1) % proj.media.length;
+      updateMedia();
+    }
+
+    function prevImage() {
+      const proj = projects[currentProj];
+      currentIdx = (currentIdx - 1 + proj.media.length) % proj.media.length;
+      updateMedia();
+    }
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -585,6 +963,20 @@
           target.scrollIntoView({ behavior: 'smooth' });
         }
       });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('modalOverlay').classList.contains('active')) {
+        if (e.key === 'Escape') closeProject();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+      }
+    });
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target.id === 'modalOverlay') {
+        closeProject();
+      }
     });
   </script>
 
